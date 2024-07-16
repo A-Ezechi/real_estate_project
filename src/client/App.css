@@ -52,7 +52,7 @@
 }
 
 .signUp{
-  background-color: Gold;
+  background-color: darkgoldenrod;
 }
 
 /* BODY */
@@ -95,8 +95,10 @@ input{
 
 .searchbtn{
   width: 7rem;
-  background-color: gold;
+  background-color: darkgoldenrod;
   border: 0.5px solid black;
+  font-size: large;
+  color: white;
 }
 
 /* ACHIEVEMENTS */
@@ -108,6 +110,7 @@ input{
 
 h3{
   font-size: 30px;
+  color: darkgoldenrod;
 }
 
 
