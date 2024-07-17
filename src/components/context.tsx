@@ -29,7 +29,13 @@ export const Provider = ({ children }: ProviderProps) => {
     const fetchProperties: PropertyContextType['fetchProperties'] = async () => {
         try {
             const response = await axios.get(`/data/dummydata.json`);
-            setProperties(response.data);
+            console.log('Raw API Data:', response.data)
+            if (Array.isArray(response.data)){
+                setProperties(response.data);
+                console.log('Fetched Properties:', response.data)
+            } else {
+                throw new Error('Fetched Data is not an array')
+            }
         } catch (err) {
             console.error(err);
             setError('Failed to fetch properties.');

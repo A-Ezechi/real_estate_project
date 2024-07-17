@@ -9,10 +9,10 @@ function App() {
   return (
     <div className="App">
       <Provider>
-      <Header />
-      <Body />
-      <Properties />
-      <Footer />
+        <Header />
+        <Body />
+        <Properties />
+        <Footer />
       </Provider>
     </div>
   );
