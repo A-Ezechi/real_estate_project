@@ -1,20 +1,16 @@
-import { useState } from "react"
+import { useContext } from "react"
+import { PropertyContext } from "../components/context"
 
 const Body = () => {
-  const [location, setLocation] = useState('')
-  const [minPrice, setMinPrice] = useState(0)
-  const [maxPrice, setMaxPrice] = useState(0)
 
-  const handleSearch = (e: any) => {
-    e.preventDefault()
-    console.log(`Location: ${location}, minPrice: ${minPrice}, MaxPrice: ${maxPrice}`)
-    setLocation('')
-    setMinPrice(0)
-    setMaxPrice(0)
+  const context = useContext(PropertyContext);
+
+  if (!context) {
+    throw new Error("useContext(PropertyContext) must be used within a Provider");
   }
 
-
-
+  const {handleSearch, location, setLocation, minPrice, setMinPrice, maxPrice, setMaxPrice} = context;
+  
   return (
     <div className="body">
       <h1 className="headline">Find Your Dream Place, You Deserve It</h1>

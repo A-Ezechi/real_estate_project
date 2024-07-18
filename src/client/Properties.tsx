@@ -48,9 +48,14 @@ const Properties = () => {
             {properties.map((filteredProperties: Property, index) => (
                 <div key={index} className="property">
                     <img src={filteredProperties.images} alt={filteredProperties.title} />
-                    <h3>{filteredProperties.title}</h3>
-                    <p>{filteredProperties.address}</p>
-                    <p>{filteredProperties.price}</p>
+                    <div className="productDescription">
+                        <h3 className="propertyName">{filteredProperties.title}</h3>
+                        <p className="propertyAddress">{filteredProperties.address}</p>
+                        <p className="propertyPrice">{filteredProperties.price}</p>
+                        <div className="btnContainer">
+                            <button className="enquire">Enquire</button>
+                        </div>
+                    </div>
                 </div>
             ))}
         </div>

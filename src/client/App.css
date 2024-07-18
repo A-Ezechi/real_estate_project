@@ -113,6 +113,47 @@ h3{
   color: darkgoldenrod;
 }
 
+/* PROPERTIES */
+
+img{
+  min-width: 320px;
+  height: 213px;
+  border-radius: 10px;
+}
+
+.productDescription{
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+}
+
+.property{
+  display: flex;
+  gap: 2rem;
+}
+
+.productChoices{
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  width: 60%;
+}
+
+.btnContainer{
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  align-items: end;
+}
+
+.enquire{
+  width: 120px;
+  height: 50px;
+  border-radius: 10px;
+  font-size: medium;
+  background-color: darkgoldenrod;
+  color: white;
+}
 
 
 

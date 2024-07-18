@@ -11,6 +11,7 @@ export interface PropertyContextType {
     setMaxPrice: (maxPrice: number) => void;
     error: string | null;
     fetchProperties: () => Promise<void>;
+    handleSearch: (event: React.FormEvent<HTMLFormElement>) => void;
 }
 
 interface ProviderProps {
@@ -25,6 +26,7 @@ export const Provider = ({ children }: ProviderProps) => {
     const [minPrice, setMinPrice] = useState<number>(0);
     const [maxPrice, setMaxPrice] = useState<number>(0);
     const [error, setError] = useState<string | null>(null);
+
 
     const fetchProperties: PropertyContextType['fetchProperties'] = async () => {
         try {
@@ -46,8 +48,16 @@ export const Provider = ({ children }: ProviderProps) => {
         fetchProperties();
     }, []);
 
+    const handleSearch = (e: any) => {
+        e.preventDefault()
+        console.log(`Location: ${location}, minPrice: ${minPrice}, MaxPrice: ${maxPrice}`)
+        setLocation('')
+        setMinPrice(0)
+        setMaxPrice(0)
+    }
+
     return (
-        <PropertyContext.Provider value={{ properties, location, setLocation, minPrice, setMinPrice, maxPrice, setMaxPrice, error, fetchProperties }}>
+        <PropertyContext.Provider value={{ properties, location, setLocation, minPrice, setMinPrice, maxPrice, setMaxPrice, error, fetchProperties, handleSearch }}>
             {children}
         </PropertyContext.Provider>
     );
