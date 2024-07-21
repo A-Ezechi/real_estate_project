@@ -23,7 +23,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 12rem;
+  margin-bottom: 10rem;
 }
 
 .headerName{
@@ -95,6 +95,7 @@ input{
 
 .searchbtn{
   width: 7rem;
+  height: 100%;
   background-color: darkgoldenrod;
   border: 0.5px solid black;
   font-size: large;
@@ -153,6 +154,35 @@ img{
   font-size: medium;
   background-color: darkgoldenrod;
   color: white;
+  box-shadow: 4px 2px 5px black;
+}
+
+.locationFilter{
+  width: 608px;
+  overflow: hidden;
+}
+
+.furtherFilters{
+  display: flex;
+  flex-direction: row;
+  width: fit-content;
+  height: 3rem;
+  gap: 1.5rem;
+  border: 1px solid black;
+}
+
+.minPrice, .maxPrice{
+  text-align: center;
+}
+
+select{
+  width: 8rem;
+  padding: 10px;
+  border: none;
+}
+
+.propertiesInnerContainer{
+  margin-bottom: 5rem;
 }
 
 

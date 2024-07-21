@@ -12,6 +12,18 @@ export interface PropertyContextType {
     error: string | null;
     fetchProperties: () => Promise<void>;
     handleSearch: (event: React.FormEvent<HTMLFormElement>) => void;
+    filteredState: Property[];
+    handleFilter: (event: React.FormEvent<HTMLFormElement>) => void;
+}
+
+interface Property {
+    id: number
+    title: string
+    address: string
+    images: string 
+    bedroom: number
+    bathroom: number
+    price: number
 }
 
 interface ProviderProps {
@@ -21,7 +33,8 @@ interface ProviderProps {
 export const PropertyContext = createContext <PropertyContextType | undefined>(undefined);
 
 export const Provider = ({ children }: ProviderProps) => {
-    const [properties, setProperties] = useState<any[]>([]);
+    const [properties, setProperties] = useState<Property[]>([]);
+    const [filteredState, setFilteredState] = useState<Property[]>(properties)
     const [location, setLocation] = useState<string>('');
     const [minPrice, setMinPrice] = useState<number>(0);
     const [maxPrice, setMaxPrice] = useState<number>(0);
@@ -32,8 +45,10 @@ export const Provider = ({ children }: ProviderProps) => {
         try {
             const response = await axios.get(`/data/dummydata.json`);
             console.log('Raw API Data:', response.data)
+
             if (Array.isArray(response.data)){
                 setProperties(response.data);
+                setFilteredState(response.data)
                 console.log('Fetched Properties:', response.data)
             } else {
                 throw new Error('Fetched Data is not an array')
@@ -48,7 +63,18 @@ export const Provider = ({ children }: ProviderProps) => {
         fetchProperties();
     }, []);
 
-    const handleSearch = (e: any) => {
+    const handleFilter = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault()
+        const filtered = properties.filter((filteredProperties: Property) => {
+          return (
+            filteredProperties.address.includes(location)
+          )
+        }
+    )
+    setFilteredState(filtered)
+}
+
+    const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         console.log(`Location: ${location}, minPrice: ${minPrice}, MaxPrice: ${maxPrice}`)
         setLocation('')
@@ -57,7 +83,7 @@ export const Provider = ({ children }: ProviderProps) => {
     }
 
     return (
-        <PropertyContext.Provider value={{ properties, location, setLocation, minPrice, setMinPrice, maxPrice, setMaxPrice, error, fetchProperties, handleSearch }}>
+        <PropertyContext.Provider value={{ properties, location, setLocation, minPrice, setMinPrice, maxPrice, setMaxPrice, error, fetchProperties, handleSearch, filteredState, handleFilter }}>
             {children}
         </PropertyContext.Provider>
     );

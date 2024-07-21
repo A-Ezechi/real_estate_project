@@ -9,8 +9,8 @@ function App() {
   return (
     <div className="App">
       <Provider>
-        <Header />
-        <Body />
+        {/* <Header />
+        <Body /> */}
         <Properties />
         <Footer />
       </Provider>
